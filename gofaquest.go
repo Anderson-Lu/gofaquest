@@ -2,7 +2,6 @@ package gofaquest
 
 import (
 	"net/http"
-	"time"
 )
 
 /*
@@ -22,6 +21,10 @@ func NewGoFaquest() *GoFaquest {
 		params:  make(map[string]string, 0),
 		headers: make(map[string]string, 0),
 	}
+}
+
+func (self *GoFaquest) SetUrl(url string) {
+	self.url = url
 }
 
 /*
@@ -55,12 +58,53 @@ func (self *GoFaquest) SetHeaders(key string, value interface{}) {
 }
 
 /*
-* Setup cookies for request
+* Disable CLS verify
  */
-func (self *GoFaquest) SetCookies(key string, value string, duration time.Duration) {
-
+func (self *GoFaquest) DisableTLSVerify() {
+	self.skipTLSVerify = true
 }
 
-func (self *GoFaquest) SetProxy() {
+/*
+* Setup cookies for request
+ */
+func (self *GoFaquest) SetCookie(key string, value string) {
+	self.cookies[key] = value
+}
 
+/*
+* Setup cookies for request
+ */
+func (self *GoFaquest) SetCookies(kvs ...string) {
+	if len(kvs)%2 != 0 {
+		return
+	}
+	for i := 0; i < len(kvs); i += 2 {
+		self.cookies[kvs[i]] = kvs[i+1]
+	}
+}
+
+/*
+*  Setup proxy
+ */
+func (self *GoFaquest) SetProxy(host string, port string, username string, password string) {
+	self.proxy = Proxy{
+		Enable:   true,
+		Host:     host,
+		Port:     port,
+		Username: username,
+		Password: password,
+	}
+}
+
+//Retry
+func (self *GoFaquest) retry(retryTimes int, job func() error) error {
+	var err error
+	for i := 0; i < retryTimes; i++ {
+		if e := job(); e != nil {
+			err = e
+			continue
+		}
+		return nil
+	}
+	return err
 }

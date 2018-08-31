@@ -1,29 +1,38 @@
 package gofaquest
 
+import "fmt"
+
 /*
 * Gofaquest(Golang Fast Request) is a high-performance http request pool service for golang.
 * retryTimes is used to setup retry time for specific request and min times is 0
  */
 type GoFaquest struct {
-	retryTimes int
-	params     map[string]string
-	headers    map[string]string
-	cookies    map[string]string
-	proxy      Proxy
-	method     int
-	timeout    int
+	err           error
+	retryTimes    int
+	params        map[string]string
+	headers       map[string]string
+	cookies       map[string]string
+	proxy         Proxy
+	method        int
+	timeout       int
+	url           string
+	skipTLSVerify bool
 }
 
 /*
 * Proxyinfo for Gofaquest
  */
 type Proxy struct {
+	Enable   bool
 	Host     string
 	Port     string
 	Username string
 	Password string
 }
 
+/*
+* Result stores request result bytes or error if occours
+ */
 type Result struct {
 	Value []byte
 	Error error
@@ -31,7 +40,8 @@ type Result struct {
 }
 
 const (
-	FAQUEST_METHOD_GET = iota
+	FAQUEST_METHOD_UNSET = iota
+	FAQUEST_METHOD_GET
 	FAQUEST_METHOD_POST
 	FAQUEST_METHOD_PUT
 	FAQUEST_METHOD_PATCH
@@ -49,19 +59,23 @@ const (
 )
 
 var FAQUEST_METHOD_MAP = map[int]string{
-	0: "GET",
-	1: "POST",
-	2: "PUT",
-	3: "PATCH",
-	4: "DELETE",
-	5: "COPY",
-	6: "HEAD",
-	7: "OPTIONS",
-	8: "LINK",
-	9: "UNLINK",
-	10: "PURGE",
-	11: "LOCK",
-	12: "UNLOCK",
-	13: "PROPFIND",
-	14: "VIEW",
+	1:  "GET",
+	2:  "POST",
+	3:  "PUT",
+	4:  "PATCH",
+	5:  "DELETE",
+	6:  "COPY",
+	7:  "HEAD",
+	8:  "OPTIONS",
+	9:  "LINK",
+	10: "UNLINK",
+	11: "PURGE",
+	12: "LOCK",
+	13: "UNLOCK",
+	14: "PROPFIND",
+	15: "VIEW",
 }
+
+var (
+	ERROR_METHOD_NOT_FOUND = fmt.Errorf("gofaquest error: invalid request method,please setup first")
+)
