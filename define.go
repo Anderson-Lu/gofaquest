@@ -17,6 +17,7 @@ type GoFaquest struct {
 	timeout       int
 	url           string
 	skipTLSVerify bool
+	userAgent     string
 }
 
 /*

@@ -43,6 +43,10 @@ func (self *GoFaquest) do() *Result {
 		})
 	}
 
+	if len(self.userAgent) > 0 {
+		request.Header.Set("User-Agent", self.userAgent)
+	}
+
 	if self.timeout <= 0 {
 		self.timeout = 10
 	}

@@ -108,3 +108,7 @@ func (self *GoFaquest) retry(retryTimes int, job func() error) error {
 	}
 	return err
 }
+
+func (self *GoFaquest) SetUserAgent(agent string) {
+	self.userAgent = agent
+}
