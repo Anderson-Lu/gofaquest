@@ -2,6 +2,7 @@ package gofaquest
 
 import (
 	"net/http"
+	"time"
 )
 
 /*
@@ -111,4 +112,8 @@ func (self *GoFaquest) retry(retryTimes int, job func() error) error {
 
 func (self *GoFaquest) SetUserAgent(agent string) {
 	self.userAgent = agent
+}
+
+func (self *GoFaquest) SetTimeout(duration time.Duration) {
+	self.timeout = int(duration)
 }
