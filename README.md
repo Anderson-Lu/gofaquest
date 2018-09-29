@@ -1,5 +1,7 @@
 Gofaquest reusable high-performance HTTP downloader for downloading web pages, interface interactions, etc.
 
+[中文文档](https://github.com/Anderson-Lu/gofaquest/blob/master/README_CN.MD)
+
 ### Dependency
 
 To use gofaquest, just need to do this:
@@ -87,6 +89,13 @@ func ParamsDemo() {
 	fmt.Println(result)
 }
 ```
+
+### Disable TLSVerify
+
+```golang
+request.DisableTLSVerify()
+```
+
 
 ### Setup retry times
 

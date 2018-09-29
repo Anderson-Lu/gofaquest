@@ -1,5 +1,7 @@
 Gofaquest可复用的高性能HTTP下载器,用于下载网页,接口交互等.
 
+[英文文档](https://github.com/Anderson-Lu/gofaquest/blob/master/README.MD)
+
 ### 依赖
 
 
@@ -13,7 +15,7 @@ go get github.com/Anderson-Lu/gofaquest
 
 有时候,我们需要通过代理去请求某些特定的接口和页面,在这里,我封装了原生的代理设置,使得设置代理更加简单方便,通过以下方式可以直接设置代理信息:
 
-```golang
+```go
 func ProxyDemo() {
 	request := gofaquest.NewGoFaquest()
 	request.SetUrl("http://www.baidu.com")
@@ -73,6 +75,13 @@ func HeaderDemo() {
 }
 ```
 
+### Disable TLSVerify
+
+```golang
+request.DisableTLSVerify()
+```
+
+
 ### 设置请求参数
 
 要设置参数,平时我们通过`url.Values`来进行设置,在`gofaquest`中,可以通过`SetParams(key,value)`来直接设置,支持直接设置不同类型的数据,我们会自动将非字符串数据转化为字符串,对象则执行序列化转化为对应的JSON数据.
@@ -119,7 +128,7 @@ func (self *GoFaquest) Propfind() *Result
 func (self *GoFaquest) View() *Result
 ```
 
-#### 结果解析
+### 结果解析
 
 所有的请求的返回结果,都会通过`*Result`来返回,其结构如下:
 
