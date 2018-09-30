@@ -16,12 +16,12 @@ Sometimes, we need to request certain interfaces and pages through the proxy. He
 
 ```golang
 func ProxyDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetProxy("127.0.0.1", "1080", "anderson", "helloworld")
-	request.SetUserAgent(gofaquest.Chrome.Latest())
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetProxy("127.0.0.1", "1080", "anderson", "helloworld")
+  request.SetUserAgent(gofaquest.Chrome.Latest())
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -33,11 +33,11 @@ In some crawler scenarios, we need to switch proxy strings from time to time. Fo
 
 ```golang
 func UserAgentDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetUserAgent(gofaquest.Chrome.Latest())
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetUserAgent(gofaquest.Chrome.Latest())
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -49,12 +49,12 @@ We provide two constants `gofaquest.Chrome` and `gofaquest.IE` to maintain commo
 
 ```golang
 func CookieDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetCookie("key","value")
-	request.SetCookies("key1","value1","key2","value2","key3","value3")
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetCookie("key","value")
+  request.SetCookies("key1","value1","key2","value2","key3","value3")
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -64,13 +64,13 @@ func CookieDemo() {
 
 ```golang
 func HeaderDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetHeaders("name", 123456)
-	request.SetHeaders("token", "abcde")
-	request.SetHeaders("user-info", struct {Name string}{Name: "Anderson"})
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetHeaders("name", 123456)
+  request.SetHeaders("token", "abcde")
+  request.SetHeaders("user-info", struct {Name string}{Name: "Anderson"})
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -88,13 +88,13 @@ To set the parameters, we usually set them by `url.Values`. In `gofaquest`, we c
 
 ```golang
 func ParamsDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetFormParams("param1","value1")
-	request.SetFormParams("param2",1000)
-	request.SetFormParams("param3",struct {Name string}{Name: "Anderson"})
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetFormParams("param1","value1")
+  request.SetFormParams("param2",1000)
+  request.SetFormParams("param3",struct {Name string}{Name: "Anderson"})
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -147,11 +147,12 @@ The result of all requests will be returned by `*Result`, which has the followin
 
 ```golang
 type Result struct {
-	Value []byte
-	Error error
-	Cost  int64
+  Value []byte
+  Error error
+  Cost  int64
 }
 ```
 
-Here `Value` is the returned byte array data, `Cost` is time consuming.
+Here `Value` is the returned byte array data, `Cost` is time consuming. For data parsing, you can parse the data directly using `json.Unmarshal()`, or use [Gofasion](https://github.com/Anderson-Lu/gofasion) to parse the data more easily.
+
 

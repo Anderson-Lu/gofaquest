@@ -17,12 +17,12 @@ go get github.com/Anderson-Lu/gofaquest
 
 ```go
 func ProxyDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetProxy("127.0.0.1", "1080", "username", "password")
-	request.SetUserAgent(gofaquest.Chrome.Latest())
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetProxy("127.0.0.1", "1080", "username", "password")
+  request.SetUserAgent(gofaquest.Chrome.Latest())
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -42,11 +42,11 @@ request.SetContentType("application/x-www-form-urlencoded")
 
 ```golang
 func UserAgentDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetUserAgent(gofaquest.Chrome.Latest())
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetUserAgent(gofaquest.Chrome.Latest())
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -58,12 +58,12 @@ func UserAgentDemo() {
 
 ```golang
 func CookieDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetCookie("key","value")
-	request.SetCookies("key1","value1","key2","value2","key3","value3")
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetCookie("key","value")
+  request.SetCookies("key1","value1","key2","value2","key3","value3")
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -73,13 +73,13 @@ func CookieDemo() {
 
 ```golang
 func HeaderDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetHeaders("name", 123456)
-	request.SetHeaders("token", "abcde")
-	request.SetHeaders("user-info", struct {Name string}{Name: "Anderson"})
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetHeaders("name", 123456)
+  request.SetHeaders("token", "abcde")
+  request.SetHeaders("user-info", struct {Name string}{Name: "Anderson"})
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -96,13 +96,13 @@ request.DisableTLSVerify()
 
 ```golang
 func ParamsDemo() {
-	request := gofaquest.NewGoFaquest()
-	request.SetUrl("http://www.baidu.com")
-	request.SetFormParams("param1","value1")
-	request.SetFormParams("param2",1000)
-	request.SetFormParams("param3",struct {Name string}{Name: "Anderson"})
-	result := request.Get()
-	fmt.Println(result)
+  request := gofaquest.NewGoFaquest()
+  request.SetUrl("http://www.baidu.com")
+  request.SetFormParams("param1","value1")
+  request.SetFormParams("param2",1000)
+  request.SetFormParams("param3",struct {Name string}{Name: "Anderson"})
+  result := request.Get()
+  fmt.Println(result)
 }
 ```
 
@@ -150,10 +150,10 @@ func (self *GoFaquest) View() *Result
 
 ```golang
 type Result struct {
-	Value []byte
-	Error error
-	Cost  int64
+  Value []byte
+  Error error
+  Cost  int64
 }
 ```
 
-这里的`Value`即为返回的字节数组数据,`Cost`为耗时
+这里的`Value`即为返回的字节数组数据,`Cost`为耗时. 对于数据解析,可以直接使用`json.Unmarshal()`来解析数据,也可以使用[Gofasion](https://github.com/Anderson-Lu/gofasion)来更加便捷地解析数据.
