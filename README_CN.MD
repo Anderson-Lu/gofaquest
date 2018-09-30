@@ -98,9 +98,9 @@ request.DisableTLSVerify()
 func ParamsDemo() {
 	request := gofaquest.NewGoFaquest()
 	request.SetUrl("http://www.baidu.com")
-	request.SetParams("param1","value1")
-	request.SetParams("param2",1000)
-	request.SetParams("param3",struct {Name string}{Name: "Anderson"})
+	request.SetFormParams("param1","value1")
+	request.SetFormParams("param2",1000)
+	request.SetFormParams("param3",struct {Name string}{Name: "Anderson"})
 	result := request.Get()
 	fmt.Println(result)
 }
