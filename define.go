@@ -12,6 +12,7 @@ type GoFaquest struct {
 	params        map[string]string
 	headers       map[string]string
 	cookies       map[string]string
+	body          string
 	proxy         Proxy
 	method        int
 	timeout       int

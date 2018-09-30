@@ -25,7 +25,14 @@ func (self *GoFaquest) do() *Result {
 		}
 	}
 
-	request, e := http.NewRequest(FAQUEST_METHOD_MAP[self.method], self.url, strings.NewReader(params.Encode()))
+	paramsStr := ""
+	if self.body != "" {
+		paramsStr = self.body
+	} else {
+		paramsStr = params.Encode()
+	}
+
+	request, e := http.NewRequest(FAQUEST_METHOD_MAP[self.method], self.url, strings.NewReader(paramsStr))
 
 	if e != nil {
 		self.err = e

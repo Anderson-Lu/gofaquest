@@ -1,6 +1,7 @@
 package gofaquest
 
 import (
+	"encoding/json"
 	"net/http"
 	"time"
 )
@@ -39,23 +40,38 @@ func (self *GoFaquest) SetRetryTimes(maxRetryTimes int) {
 }
 
 /*
+* Setup body data
+ */
+func (self *GoFaquest) SetBodyJson(jsonData string) {
+	self.body = jsonData
+}
+
+/*
 * Setup params for request
  */
-func (self *GoFaquest) SetParams(key string, value interface{}) {
-	if key == "" {
+func (self *GoFaquest) SetFormParams(key string, value interface{}) {
+	if key == "" || value == nil {
 		return
 	}
-	self.params[key] = value.(string)
+	if v, ok := value.(string); ok {
+		self.params[key] = v
+	} else {
+		self.params[key] = self.parseJson(value)
+	}
 }
 
 /*
 * Setup headers for request
  */
 func (self *GoFaquest) SetHeaders(key string, value interface{}) {
-	if key == "" {
+	if key == "" || value == nil {
 		return
 	}
-	self.headers[key] = value.(string)
+	if v, ok := value.(string); ok {
+		self.headers[key] = v
+	} else {
+		self.headers[key] = self.parseJson(value)
+	}
 }
 
 /*
@@ -116,4 +132,13 @@ func (self *GoFaquest) SetUserAgent(agent string) {
 
 func (self *GoFaquest) SetTimeout(duration time.Duration) {
 	self.timeout = int(duration)
+}
+
+func (self *GoFaquest) SetContentType(typeStr string) {
+	self.headers["Content-Type"] = typeStr
+}
+
+func (self *GoFaquest) parseJson(iter interface{}) string {
+	bs, _ := json.Marshal(iter)
+	return string(bs)
 }

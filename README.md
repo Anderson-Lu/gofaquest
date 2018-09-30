@@ -74,6 +74,14 @@ func HeaderDemo() {
 }
 ```
 
+### Setup Content-Type
+
+Sometimes, we need to set the content type property of the request, such as `application/x-www-form-urlencoded` and `application/json;charset=UTF-8`.
+
+```golang
+request.SetContentType("application/x-www-form-urlencoded")
+```
+
 ### SetUp Params
 
 To set the parameters, we usually set them by `url.Values`. In `gofaquest`, we can set them directly by `SetParams(key,value)`, which supports setting different types of data directly. We will automatically set non-characters. The string data is converted to a string, and the object is serialized and converted to the corresponding JSON data.
@@ -90,12 +98,14 @@ func ParamsDemo() {
 }
 ```
 
+Also, if you want to add json data to request body, use the `request.SetBodyJson()` method instead and set content type to `application/json;charset=UTF-8`
+
+
 ### Disable TLSVerify
 
 ```golang
 request.DisableTLSVerify()
 ```
-
 
 ### Setup retry times
 
@@ -103,6 +113,12 @@ Sometimes, we may need to retry the request because of some network problems.
 
 ```golang
 request.SetRetryTimes(30)
+```
+
+### Setup request timeout
+
+```golang
+request.SetTimeout(time.Second*10)
 ```
 
 ### Setup Method

@@ -28,6 +28,14 @@ func ProxyDemo() {
 
 注意,如果代理不需要设置用户名和密码,则相应参数传递空字符串即可.
 
+### 设置Content-Type
+
+有时候,我们需要设置请求的Content-Type属性,比如`application/x-www-form-urlencoded`以及`application/json;charset=UTF-8`等.
+
+```golang
+request.SetContentType("application/x-www-form-urlencoded")
+```
+
 ### 设置User-Agent
 
 在一些爬虫场景下,我们需要时常切换代理字符串,比如使用IE代理或者谷歌代理等,Gofaquest提供了`IE`和`Chrome`常见的用户代理字符串,同时支持用户自定义`User-Agent`,代码如下:
@@ -98,12 +106,20 @@ func ParamsDemo() {
 }
 ```
 
+此外,如果要在`body`中添加`json`数据,请使用`request.SetBodyJson()`方法
+
 ###  设置重试次数
 
 有时候,可能因为一些网络问题,我们需要进行重试请求
 
 ```golang
 request.SetRetryTimes(30)
+```
+
+### 设置请求超时时间
+
+```golang
+request.SetTimeout(time.Second*10)
 ```
 
 ### 设置请求方法

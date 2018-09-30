@@ -48,7 +48,7 @@ func HeaderDemo() {
 	request.SetUrl("http://www.baidu.com")
 	request.SetHeaders("name", 123456)
 	request.SetHeaders("token", "abcde")
-	request.SetHeaders("user-info", struct {Name string}{Name: "Anderson"})
+	request.SetHeaders("user-info", struct{ Name string }{Name: "Anderson"})
 	result := request.Get()
 	fmt.Println(result)
 }
@@ -56,10 +56,9 @@ func HeaderDemo() {
 func ParamsDemo() {
 	request := gofaquest.NewGoFaquest()
 	request.SetUrl("http://www.baidu.com")
-	request.SetParams("param1","value1")
-	request.SetParams("param2",1000)
-	request.SetParams("param3",struct {Name string}{Name: "Anderson"})
+	request.SetFormParams("param1", "value1")
+	request.SetFormParams("param2", 1000)
+	request.SetFormParams("param3", struct{ Name string }{Name: "Anderson"})
 	result := request.Get()
-	fmt.Println(result)	
+	fmt.Println(result)
 }
-
