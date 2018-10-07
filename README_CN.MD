@@ -122,6 +122,20 @@ request.SetRetryTimes(30)
 request.SetTimeout(time.Second*10)
 ```
 
+###设置Puppeteer
+
+在一些蜘蛛中，我们需要模拟chrome来下载一些网页，gofaquest支持golang和puppeteer之间的交互。在这种情况下，您只需要设置如下：
+
+```golang
+request.SetPuppeteer("puppeteer_host","puppeeter_port"，"PAGE_URL")
+```
+
+并使用它来获得响应：
+
+```golang
+resp：= request.Puppeteer()
+```
+
 ### 设置请求方法
 
 我们提供了常用的HTTP请求方法
@@ -142,6 +156,7 @@ func (self *GoFaquest) Lock() *Result
 func (self *GoFaquest) Unlock() *Result
 func (self *GoFaquest) Propfind() *Result
 func (self *GoFaquest) View() *Result
+func (self *GoFaquest) Puppeteer() *Result 
 ```
 
 ### 结果解析

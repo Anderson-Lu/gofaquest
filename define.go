@@ -14,11 +14,21 @@ type GoFaquest struct {
 	cookies       map[string]string
 	body          string
 	proxy         Proxy
+	puppeteer     Puppeteer
 	method        int
 	timeout       int
 	url           string
 	skipTLSVerify bool
 	userAgent     string
+}
+
+/*
+* Puppeteer server setting
+*/
+type Puppeteer struct {
+	Host string
+	Port string
+	Page string
 }
 
 /*

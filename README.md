@@ -121,6 +121,20 @@ request.SetRetryTimes(30)
 request.SetTimeout(time.Second*10)
 ```
 
+### Setup Puppeteer
+
+In some spiders, we need to mock chrome to download some web pages, and gofaquest support interaction between golang and puppeteer. In this case, you just need to setup like this:
+
+```golang 
+request.SetPuppeteer("puppeteer_host","puppeeter_port","page_url")
+```
+
+And use this to get response: 
+
+```golang
+resp := request.Puppeteer()
+```
+
 ### Setup Method
 
 ```golang
@@ -139,6 +153,7 @@ func (self *GoFaquest) Lock() *Result
 func (self *GoFaquest) Unlock() *Result
 func (self *GoFaquest) Propfind() *Result
 func (self *GoFaquest) View() *Result
+func (self *GoFaquest) Puppeteer() *Result 
 ```
 
 ### Response

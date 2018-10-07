@@ -1,6 +1,7 @@
 package gofaquest
 
 import (
+	"fmt"
 	"encoding/json"
 	"net/http"
 	"time"
@@ -111,6 +112,18 @@ func (self *GoFaquest) SetProxy(host string, port string, username string, passw
 		Username: username,
 		Password: password,
 	}
+}
+
+/*
+* Setup puppeteer server
+*/
+func (self *GoFaquest) SetPuppeteer(host string,port string,pageUrl string){
+	self.puppeteer = Puppeteer{
+		Host: host,
+		Port: port,
+	}
+	self.SetUrl(fmt.Sprintf("%s:%s",self.puppeteer.Host,self.puppeteer.Port))
+	self.SetFormParams("target",pageUrl)
 }
 
 //Retry

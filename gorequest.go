@@ -191,3 +191,8 @@ func (self *GoFaquest) View() *Result {
 	self.method = FAQUEST_METHOD_VIEW
 	return self.do()
 }
+
+func (self *GoFaquest) Puppeteer() *Result {
+	self.method = FAQUEST_METHOD_GET
+	return self.do()
+}
