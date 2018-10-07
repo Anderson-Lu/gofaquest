@@ -1,4 +1,4 @@
-Gofaquest可复用的高性能HTTP下载器,用于下载网页,接口交互等.
+Gofaquest可复用的高性能HTTP下载器,用于下载网页,接口交互等. 它支持常见的HTTP/HTTPS请求（get，post，put等）和Google无头chrome puppeteer。
 
 [英文文档](https://github.com/Anderson-Lu/gofaquest/blob/master/README.MD)
 

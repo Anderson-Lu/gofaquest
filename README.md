@@ -1,4 +1,4 @@
-Gofaquest reusable high-performance HTTP downloader for downloading web pages, interface interactions, etc.
+Gofaquest reusable high-performance HTTP downloader for downloading web pages, interface interactions, etc. It support common HTTP/HTTPS request(get,post,put and etc.) and Google headless chrome puppeteer.
 
 [中文文档](https://github.com/Anderson-Lu/gofaquest/blob/master/README_CN.MD)
 
