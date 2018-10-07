@@ -136,6 +136,12 @@ request.SetPuppeteer("puppeteer_host","puppeeter_port"，"PAGE_URL")
 resp：= request.Puppeteer()
 ```
 
+如果你想学习如何使用puppeteer，你可以访问[https://github.com/GoogleChrome/puppeteer](https://github.com/GoogleChrome/puppeteer)。另外，我提供了一个示例[downloader.js](https://github.com/Anderson-Lu/gofaquest/tree/master/example/downloader.js)。以及如何通过docker运行puppeteer服务?只需运行以下代码：
+
+```shell
+docker run --rm --shm-size 1G --name puppeteer_downloader -v downloader.js:/app/index.js --privileged = true -p 48000：15400 alekzonder/puppeteer
+```
+
 ### 设置请求方法
 
 我们提供了常用的HTTP请求方法

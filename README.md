@@ -135,6 +135,12 @@ And use this to get response:
 resp := request.Puppeteer()
 ```
 
+And if you want to learn how to use puppeteer, you can visit [https://github.com/GoogleChrome/puppeteer](https://github.com/GoogleChrome/puppeteer). Also, I provide a sample [downloader.js](https://github.com/Anderson-Lu/gofaquest/tree/master/example/downloader.js). And how to run a puppeteer server via docker? just run the following code:
+
+```shell
+docker run --rm --shm-size 1G --name puppeteer_downloader -v downloader.js:/app/index.js --privileged=true -p 48000:15400 alekzonder/puppeteer
+```
+
 ### Setup Method
 
 ```golang
